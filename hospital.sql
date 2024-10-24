@@ -1,77 +1,77 @@
 -- Hospital Table
 CREATE TABLE Hospital (
     HospitalID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    Address VARCHAR(255)
+    Nome VARCHAR(100) NOT NULL,
+    Endereco VARCHAR(255)
 );
 
 -- Outpatient Clinic Table
-CREATE TABLE OutpatientClinic (
-    ClinicID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100),
+CREATE TABLE Clinica (
+    ClinicaID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100),
     HospitalID INT,
     FOREIGN KEY (HospitalID) REFERENCES Hospital(HospitalID)
 );
 
 -- Doctor Table
-CREATE TABLE Doctor (
-    DoctorID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    Specialty VARCHAR(100),
+CREATE TABLE Doutor (
+    DoutorID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Especialidade VARCHAR(100),
     HospitalID INT,
     FOREIGN KEY (HospitalID) REFERENCES Hospital(HospitalID)
 );
 
 -- Patient Table
-CREATE TABLE Patient (
-    PatientID INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Paciente (
+    PacienteID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100),
-    ClinicID INT,
-    FOREIGN KEY (ClinicID) REFERENCES OutpatientClinic(ClinicID)
+    ClinicaID INT,
+    FOREIGN KEY (ClinicaID) REFERENCES Clinica(ClinicaID)
 );
 
 -- Doctor-Patient Relationship Table
-CREATE TABLE DoctorPatient (
-    DoctorID INT,
-    PatientID INT,
-    ConsultationDate DATE,
-    PRIMARY KEY (DoctorID, PatientID),
-    FOREIGN KEY (DoctorID) REFERENCES Doctor(DoctorID),
-    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+CREATE TABLE DoutorPaciente (
+    DoutorID INT,
+    PacienteID INT,
+    ConsultaData DATE,
+    PRIMARY KEY (DoutorID, PacienteID),
+    FOREIGN KEY (DoutorID) REFERENCES Doutor(DoutorID),
+    FOREIGN KEY (PacienteID) REFERENCES Paciente(PacienteID)
 );
 
 -- Laboratory Table
-CREATE TABLE Laboratory (
-    LaboratoryID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100)
+CREATE TABLE Laboratorio (
+    LaboratorioID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100)
 );
 
 -- Clinical Test Requests Table
-CREATE TABLE ClinicalTestRequest (
-    TestID INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE ClinicaTesteRequisicao (
+    TesteID INT PRIMARY KEY AUTO_INCREMENT,
     HospitalID INT,
-    LaboratoryID INT,
-    TestDate DATE,
-    TestResult VARCHAR(255),
+    LaboratorioID INT,
+    TesteData DATE,
+    TesteResultado VARCHAR(255),
     FOREIGN KEY (HospitalID) REFERENCES Hospital(HospitalID),
-    FOREIGN KEY (LaboratoryID) REFERENCES Laboratory(LaboratoryID)
+    FOREIGN KEY (LaboratorioID) REFERENCES Laboratorio(LaboratorioID)
 );
 
 -- Support Staff Table
-CREATE TABLE SupportStaff (
-    StaffID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100),
-    Role VARCHAR(100),
-    ClinicID INT,
-    FOREIGN KEY (ClinicID) REFERENCES OutpatientClinic(ClinicID)
+CREATE TABLE EquipeApoio (
+    EquipeApoioID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100),
+    Cargo VARCHAR(100),
+    ClinicaID INT,
+    FOREIGN KEY (ClinicaID) REFERENCES Clinica(ClinicaID)
 );
 
 -- Exam Table
-CREATE TABLE Exam (
-    ExamID INT PRIMARY KEY AUTO_INCREMENT,
-    ExamName VARCHAR(100),
-    PatientID INT,
-    ExamDate DATE,
-    Result VARCHAR(255),
-    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+CREATE TABLE Exame (
+    ExameID INT PRIMARY KEY AUTO_INCREMENT,
+    ExameNome VARCHAR(100),
+    PacienteID INT,
+    ExameData DATE,
+    Resultado VARCHAR(255),
+    FOREIGN KEY (PacienteID) REFERENCES Paciente(PacienteID)
 );

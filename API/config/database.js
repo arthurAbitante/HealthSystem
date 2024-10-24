@@ -1,8 +1,8 @@
 const { Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('hospital_db', 'root', '123456', {
+const sequelize = new Sequelize('prova', 'root', '123456', {
     host: 'localhost',
     dialect: 'mysql'
 });
 
-MediaSourceHandle.exports = sequelize;
+module.exports = sequelize;

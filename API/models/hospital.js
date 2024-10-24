@@ -12,7 +12,7 @@ const Hospital = sequelize.define('Hospital', {
         allowNull: false
     },
     Address: {
-        type: DataTypes.String
+        type: DataTypes.STRING
     }
 });
 

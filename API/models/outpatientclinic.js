@@ -19,4 +19,4 @@ const OutPatientClinic = sequelize.define('OutPatientClinic', {
 });
 
 
-module.exports = Laboratory;
+module.exports = OutPatientClinic;
